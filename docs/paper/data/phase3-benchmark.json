@@ -1,0 +1,64 @@
+{
+  "benchmark": "phase3-sqlite-performance",
+  "generated_at": "2026-04-06T20:53:23.560805+00:00",
+  "started_at": "2026-04-06T20:53:21.899437+00:00",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "configuration": {
+    "command": "python scripts/benchmark_sqlite.py --n 20000 --runs 5 --query-runs 25 --seed 20260406"
+  },
+  "results": {
+    "n_transactions": 20000,
+    "repetitions": 5,
+    "query_repetitions_per_run": 25,
+    "seed_base": 20260406,
+    "date_window": {
+      "start": "2025-10-01",
+      "end_exclusive": "2025-11-01"
+    },
+    "metrics_ms": {
+      "bulk_insert": {
+        "samples": 5,
+        "mean": 96.4607,
+        "median": 92.7875,
+        "min": 84.7695,
+        "max": 109.461,
+        "stddev": 9.6274
+      },
+      "query_with_index": {
+        "samples": 125,
+        "mean": 2.4762,
+        "median": 2.4493,
+        "min": 1.7646,
+        "max": 3.4838,
+        "stddev": 0.4028
+      },
+      "query_without_index": {
+        "samples": 125,
+        "mean": 1.926,
+        "median": 1.8284,
+        "min": 1.5062,
+        "max": 3.1037,
+        "stddev": 0.3656
+      }
+    },
+    "derived": {
+      "query_speedup_x": 0.78
+    },
+    "query_plan": {
+      "with_index": [
+        "SCAN c",
+        "SEARCH t USING INDEX idx_txn_fecha (fecha>? AND fecha<?)",
+        "USE TEMP B-TREE FOR ORDER BY"
+      ],
+      "without_index": [
+        "SCAN t",
+        "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)",
+        "USE TEMP B-TREE FOR GROUP BY",
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Finanzas SQLite",
+    "slug": "finanzas-sqlite",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}

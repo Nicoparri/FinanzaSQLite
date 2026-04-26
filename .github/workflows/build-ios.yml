@@ -1,0 +1,72 @@
+name: Build iOS unsigned IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'app/**'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'app.json'
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    env:
+      EXPO_NO_TELEMETRY: 1
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Print package/lock key versions
+        run: |
+          node -e "const p=require('./package.json'); const l=require('./package-lock.json'); console.log('package expo-sqlite:', p.dependencies?.['expo-sqlite']); console.log('lock expo-sqlite   :', l.packages?.['']?.dependencies?.['expo-sqlite']); console.log('package react-native:', p.dependencies?.['react-native']); console.log('lock react-native   :', l.packages?.['']?.dependencies?.['react-native']); console.log('package babel-preset-expo:', p.devDependencies?.['babel-preset-expo']); console.log('lock babel-preset-expo   :', l.packages?.['']?.devDependencies?.['babel-preset-expo']);"
+
+      - name: Install dependencies
+        run: |
+          npm ci || (echo "npm ci failed due manifest/lock mismatch; running npm install fallback" && npm install --no-audit --no-fund)
+
+      - name: Set bundleIdentifier in app.json
+        run: |
+          jq '.expo.ios.bundleIdentifier = "com.cbdus.finanzassqlite"' app.json > tmp.json && mv tmp.json app.json
+
+      - name: Run Expo prebuild (generates ios/ Xcode project)
+        run: npx expo prebuild --platform ios --clean
+
+      - name: Show generated workspace name (for debugging)
+        run: ls ios/*.xcworkspace
+
+      - name: Build unsigned .app with xcodebuild
+        run: |
+          xcodebuild \
+            -workspace ios/FinanzasSQLite.xcworkspace \
+            -scheme FinanzasSQLite \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO \
+            -derivedDataPath build/DerivedData \
+            build
+
+      - name: Package .app into unsigned .ipa
+        run: |
+          mkdir -p Payload
+          cp -r "build/DerivedData/Build/Products/Release-iphoneos/FinanzasSQLite.app" Payload/
+          zip -r FinanzasSQLite.ipa Payload
+          rm -rf Payload
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FinanzasSQLite-ipa
+          path: FinanzasSQLite.ipa
+          retention-days: 7
