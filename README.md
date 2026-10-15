@@ -281,6 +281,17 @@ También se documentan como limitaciones de alcance:
 - Sin cifrado nativo avanzado en esta fase
 - Sin soporte Android como objetivo principal de evaluación
 
+## Metodología: flujo GSD con agentes de IA
+
+El proyecto (app, memoria académica y defensa) se desarrolló con [GSD](https://github.com/open-gsd/gsd-core), un framework open source de desarrollo guiado por especificaciones para agentes de IA. Cada fase sigue el ciclo **discutir → planificar → ejecutar → verificar**, y cada paso deja un artefacto versionado en `.planning/` que sirve de fuente de verdad para el siguiente.
+
+- **Investigación previa** del stack, la arquitectura y los riesgos en `.planning/research/`.
+- **Hito v1.0 en 4 fases** (diseño y redacción inicial, implementación de la app, resultados y redacción final, defensa) con 17 planes, sus resúmenes de ejecución, verificación y pruebas de aceptación (UAT) por fase, en `.planning/milestones/`.
+- **Auditoría del hito**: comprobó requisito a requisito qué estaba cubierto; los huecos detectados se cerraron con un plan específico antes de dar el hito por terminado.
+- **Tareas rápidas** (`.planning/quick/`) para cambios pequeños sin recorrer el ciclo completo.
+
+Mi papel fue definir el alcance y los criterios de aceptación, dirigir a los agentes y revisar y validar cada entrega.
+
 ## Documentación relacionada
 
 - [Despliegue en iPhone desde Windows](docs/DEPLOY-iOS.md)
