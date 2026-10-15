@@ -5,3 +5,5 @@
 .github/gsd-file-manifest.json
 node_modules/
 .expo/
+# Binarios de iOS: se publican como assets de las releases
+*.ipa

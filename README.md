@@ -118,14 +118,14 @@ npx expo start --tunnel
 
 ## Manual de despliegue
 
-El proyecto incluye un binario `FinanzasSQLite.ipa`, por lo que hay dos rutas de despliegue habituales.
+El binario `FinanzasSQLite.ipa` se publica en la [release v1.0.0](https://github.com/Nicoparri/FinanzaSQLite/releases/tag/v1.0.0), por lo que hay dos rutas de despliegue habituales.
 
 ### Opción A: instalar el `.ipa` en iPhone desde Windows
 
 Requisitos:
 
 - iPhone con iOS 16 o superior
-- `FinanzasSQLite.ipa` incluido en la raíz del proyecto
+- `FinanzasSQLite.ipa`, descargado de la [release v1.0.0](https://github.com/Nicoparri/FinanzaSQLite/releases/tag/v1.0.0)
 - Apple ID gratuita
 - Sideloadly
 - iTunes instalado desde la web de Apple, no desde Microsoft Store
@@ -286,3 +286,7 @@ También se documentan como limitaciones de alcance:
 - [Despliegue en iPhone desde Windows](docs/DEPLOY-iOS.md)
 - [Diagrama entidad-relación](docs/esquema/diagrama-er.md)
 - [Resultados del benchmark](docs/paper/data/phase3-benchmark.json)
+
+## Licencia
+
+Distribuido bajo la licencia MIT. Consulta [LICENSE](LICENSE).

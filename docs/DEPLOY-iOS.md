@@ -2,7 +2,7 @@
 
 Guia para ejecutar la app **Finanzas SQLite** en iPhone desde Windows con dos rutas:
 
-- **Opcion A (recomendada para entrega):** instalar el archivo `FinanzasSQLite.ipa` que viene incluido en el proyecto.
+- **Opcion A (recomendada para entrega):** instalar el archivo `FinanzasSQLite.ipa` publicado en la [release v1.0.0](https://github.com/Nicoparri/FinanzaSQLite/releases/tag/v1.0.0).
 - **Opcion B (desarrollo y pruebas):** ejecutar la app con **Expo Go**.
 
 ---
@@ -29,13 +29,13 @@ Para **Opcion B (Expo Go)**:
 
 ---
 
-## Opcion A - Instalar el IPA incluido en el proyecto
+## Opcion A - Instalar el IPA de la release
 
 ### Paso 1 - Localizar el IPA del proyecto
 
-En esta guia se asume que el binario ya viene entregado junto al proyecto con nombre `FinanzasSQLite.ipa`.
+Descarga `FinanzasSQLite.ipa` desde la [release v1.0.0](https://github.com/Nicoparri/FinanzaSQLite/releases/tag/v1.0.0) del repositorio.
 
-Si no lo tienes en el momento del despliegue, pide el paquete de entrega completo o usa el apartado opcional del final para regenerarlo.
+Si necesitas una build nueva, usa el apartado opcional del final para regenerarla.
 
 ### Paso 2 - Preparar el iPhone
 
@@ -118,5 +118,5 @@ Si no tienes el `FinanzasSQLite.ipa`, puedes regenerarlo con GitHub Actions usan
 
 | Escenario | Opcion recomendada |
 |---|---|
-| Entrega final en iPhone sin Mac | IPA incluido + Sideloadly |
+| Entrega final en iPhone sin Mac | IPA de la release + Sideloadly |
 | Desarrollo y pruebas rapidas | Expo Go |
