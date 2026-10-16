@@ -281,9 +281,9 @@ También se documentan como limitaciones de alcance:
 - Sin cifrado nativo avanzado en esta fase
 - Sin soporte Android como objetivo principal de evaluación
 
-## Metodología: flujo GSD con agentes de IA
+## Metodología: desarrollo guiado por especificaciones con agentes de IA
 
-El proyecto (app, memoria académica y defensa) se desarrolló con [GSD](https://github.com/open-gsd/gsd-core), un framework open source de desarrollo guiado por especificaciones para agentes de IA. Cada fase sigue el ciclo **discutir → planificar → ejecutar → verificar**, y cada paso deja un artefacto versionado en `.planning/` que sirve de fuente de verdad para el siguiente.
+El proyecto (app, memoria académica y defensa) se desarrolló con agentes de IA mediante una técnica de desarrollo guiado por especificaciones: cada fase se ejecuta con un contexto limpio y la información viaja entre sesiones en ficheros versionados. Cada fase sigue el ciclo **discutir → planificar → ejecutar → verificar**, y cada paso deja un artefacto versionado en `.planning/` que sirve de fuente de verdad para el siguiente.
 
 - **Investigación previa** del stack, la arquitectura y los riesgos en `.planning/research/`.
 - **Hito v1.0 en 4 fases** (diseño y redacción inicial, implementación de la app, resultados y redacción final, defensa) con 17 planes, sus resúmenes de ejecución, verificación y pruebas de aceptación (UAT) por fase, en `.planning/milestones/`.
